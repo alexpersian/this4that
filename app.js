@@ -10,6 +10,6 @@ var server = http.createServer(function (req, res) {
 
 });
 
-server.listen(80);
+server.listen(process.env.port || 3000);
 
 console.log("FUDGE");
