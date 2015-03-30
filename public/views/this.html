@@ -1,0 +1,26 @@
+<!-- public/views/nerd.html -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="jumbotron text-center">
+    <h1>Students have these things:</h1>
+    <div class="list-group">
+        <div class="list-group-item">
+            <div class="row-picture">
+                <img class="circle" src="http://lh6.ggpht.com/EPgDbm-Z_wUS3f-_7qE7SwnRPMW9eywBOIEmnKaSkEth4ZnGySbqDPKmmu--sAqn5budOZe0w8HTYDmq=s620" alt="icon">
+            </div>
+            <div class="row-content">
+
+                <ul>
+                    <li ng-repeat="post in posts">
+                        [{{$index + 1}}] {{post.name}} {{post.desc}}
+                    </li>
+                </ul>
+
+                <h4 class="list-group-item-heading">Karate Kid Figure</h4>
+                <p class="list-group-item-text">Givin' Bruce Lee a run for it.</p>
+            </div>
+        </div>
+        <a href="/contact" class="btn btn-inverse">I want</a>
+        <div class="list-group-separator"></div>
+    </div>
+</div>
