@@ -10,6 +10,7 @@ var Schema = mongoose.Schema;
 
 // defines what makes up a Post
 var PostSchema = new Schema ({
+    type: String,
     name: String,
     desc: String,
     qty: String,

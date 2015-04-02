@@ -1,12 +1,14 @@
 {
   "name": "starter-node-angular",
   "version": "1.0.0",
+  "directory": "public/libs",
   "dependencies": {
     "bootstrap-material-design": "latest",
     "font-awesome": "latest",
     "animate.css": "latest",
     "angular": "latest",
     "angular-route": "latest",
+    "angular-resource": "latest",
     "pure": "latest",
     "angular-material": "latest"
   }

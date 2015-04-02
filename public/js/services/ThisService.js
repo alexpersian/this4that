@@ -4,22 +4,23 @@
 
 // public/js/services/ThisService.js
 
-angular.module('ThisService', []).factory('This', ['$http', function($http) {
-    return {
-        // call to GET all the nerds
-        get: function() {
-            return $http.get('/api/nerds');
-        },
+angular.module('ThisService', [])
+    .factory('This', function($http, $injector) {
+        return $http.get('/api')
+            .then(function() {
+                return $injector.get('api');
+            });
+    })
+    .factory('api', function($http, $injector) {
+        var store = {
+            posts: [],
 
-        /** these will work when more API routes are defined on the Node side of things */
-        // call to POST and create a new nerd
-        create: function(nerdData) {
-            return $http.post('/api/nerds', nerdData);
-        },
-
-        // call to DELETE a nerd
-        delete: function(id) {
-            return $http.delete('/api/nerds' + id);
-        }
-    }
-}]);
+            get: function() {
+                return $http.get('/api/posts')
+                    .then(function(res) {
+                        angular.copy(res.data, store.posts);
+                        return store.posts;
+                    });
+            }
+        };
+    });
