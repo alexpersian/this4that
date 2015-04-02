@@ -9,9 +9,6 @@ var Post = require('./models/post');
 
 module.exports = function(app, express) {
 
-
-
-
     /**
      * server routers
      * handles things like api calls
@@ -21,12 +18,13 @@ module.exports = function(app, express) {
     /**
      * Posts
      */
+    /** debug functionality **/
     app.use(function(req, res, next) {
         console.log('API accessed...');
         next();
     });
 
-    // sample api route
+    /** get all posts in database **/
     app.get('/api/posts', function(req, res) {
         // use mongoose to get all nerds in the database
         Post.find(function(err, posts) {
@@ -39,9 +37,10 @@ module.exports = function(app, express) {
         });
     });
 
-    // route to handle creating goes here (app.post)
+    /** add a new post with parameters **/
     app.post('/api/posts', function(req, res) {
         var post = new Post();
+        post.type = req.body.type;
         post.name = req.body.name;
         post.desc = req.body.desc;
         post.img = req.body.img;
@@ -56,6 +55,7 @@ module.exports = function(app, express) {
         });
     });
 
+    /** get a specific post by id **/
     app.get('/api/posts/:post_id', function(req, res) {
         Post.findById(req.params.post_id, function(err, post) {
             if (err) {
@@ -65,6 +65,7 @@ module.exports = function(app, express) {
         });
     });
 
+    /** update a post **/
     app.put('/api/posts/:post_id', function(req, res) {
         Post.findById(req.params.post_id, function(err, post) {
             if (err) {
@@ -81,7 +82,7 @@ module.exports = function(app, express) {
         });
     });
 
-    // route to handle deleting goes here (app.delete)
+    /** delete a single post **/
     app.delete('/api/posts/:post_id', function(req, res) {
         Post.remove({
             _id: req.params.post_id
@@ -92,15 +93,4 @@ module.exports = function(app, express) {
             res.json({ message: "Post deleted!" });
         });
     });
-
-
-    /**
-     * frontend routes
-     * routes to handle all angular requests
-     * handled by Angular instead
-     */
-
-    //app.get('*', function(req, res) {
-    //    res.sendfile('./public/index.html'); // loads the public/index.html file
-    //});
 };
